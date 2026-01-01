@@ -27,9 +27,6 @@ The goal isn't to use AI less. It's to use it in ways that make you think *more*
 
 That's it.
 
-If you want to go deeper into the thinking behind this, see the [Framework Principles](docs/FRAMEWORK_PRINCIPLES.md) doc. Or just start using it and see what you notice.
-
-
 ---
 
 ## Contributing
