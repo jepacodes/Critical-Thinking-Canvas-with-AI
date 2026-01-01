@@ -9,26 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release of the AI Proper Use Workbook
-- Six interactive canvases:
-  - AI Decision Canvas (The Three Questions)
-  - Task Analysis Canvas
-  - Strategic Engagement Canvas
-  - Thought Architecture Canvas
-  - Authenticity Review Canvas
-  - Implementation Tracker (3-week program)
 - Auto-save to browser localStorage
-- Export/import functionality for backing up work
 - Print styles for creating physical copies
-- Keyboard navigation support
-- Screen reader accessibility
-- Responsive design for mobile devices
-- Comprehensive documentation:
-  - Getting Started guide
-  - User Guide
-  - Framework Principles
-  - Case Studies
-  - FAQ
-- Example completed workbooks
 - Contribution guidelines and community files
 
 ### Based on
