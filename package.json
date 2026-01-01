@@ -1,0 +1,32 @@
+{
+  "name": "ai-proper-use-workbook",
+  "version": "1.0.0",
+  "description": "An interactive workbook for using AI thoughtfully, based on Advait Sarkar's Tools for Thought framework",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "npx serve src",
+    "test": "echo \"No tests configured yet\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-proper-use-workbook.git"
+  },
+  "keywords": [
+    "ai",
+    "critical-thinking",
+    "framework",
+    "tools-for-thought",
+    "workbook",
+    "productivity",
+    "metacognition"
+  ],
+  "author": "AI Proper Use Workbook Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/ai-proper-use-workbook/issues"
+  },
+  "homepage": "https://github.com/yourusername/ai-proper-use-workbook#readme",
+  "devDependencies": {}
+}
+
+

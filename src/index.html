@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cognition Canvas</title>
+    <style>
+        /* =================================================================
+           RESET & BASE
+           ================================================================= */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #000;
+            font-size: 14px;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =================================================================
+           MAIN CONTAINER
+           ================================================================= */
+
+        .canvas-container {
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =================================================================
+           HEADER
+           ================================================================= */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            font-weight: 400;
+            color: #000;
+            opacity: 0.6;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .meta-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-field label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .meta-field input {
+            border: none;
+            border-bottom: 1px solid #000;
+            padding: 4px 0;
+            font-family: inherit;
+            font-size: 13px;
+            background: transparent;
+            min-width: 160px;
+        }
+
+        .meta-field input:focus {
+            outline: none;
+            border-bottom-width: 2px;
+        }
+
+        .meta-field input::placeholder {
+            color: #999;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .print-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            background: #333;
+        }
+
+        /* =================================================================
+           MAIN GRID
+           ================================================================= */
+
+        .main-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border: 2px solid #000;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid #000;
+        }
+
+        .column:last-child {
+            border-right: none;
+        }
+
+        .column-header {
+            padding: 12px 16px;
+            border-bottom: 2px solid #000;
+            text-align: center;
+            background: #000;
+            color: #fff;
+        }
+
+        .column-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .column-subtitle {
+            font-size: 10px;
+            font-weight: 400;
+            margin-top: 2px;
+            opacity: 0.7;
+        }
+
+        .box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 2px solid #000;
+        }
+
+        .box:last-child {
+            border-bottom: none;
+        }
+
+        .box-header {
+            padding: 12px 16px 8px;
+        }
+
+        .box-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .box-prompt {
+            font-size: 11px;
+            color: #000;
+            opacity: 0.5;
+            font-style: italic;
+        }
+
+        .box-content {
+            flex: 1;
+            padding: 0 16px 16px;
+        }
+
+        .box-content textarea {
+            width: 100%;
+            height: 100%;
+            min-height: 120px;
+            border: none;
+            resize: none;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.5;
+            background: transparent;
+        }
+
+        .box-content textarea:focus {
+            outline: none;
+        }
+
+        .box-content textarea::placeholder {
+            color: #ccc;
+        }
+
+        /* =================================================================
+           FOOTER
+           ================================================================= */
+
+        .footer {
+            margin-top: 0;
+            border: 2px solid #000;
+            border-top: none;
+        }
+
+        .footer-header {
+            padding: 12px 16px;
+            border-bottom: 2px solid #000;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .footer-subtitle {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+
+        .footer-content {
+            padding: 16px;
+        }
+
+        .footer-content textarea {
+            width: 100%;
+            min-height: 80px;
+            border: none;
+            resize: none;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.5;
+            background: transparent;
+        }
+
+        .footer-content textarea:focus {
+            outline: none;
+        }
+
+        .footer-content textarea::placeholder {
+            color: #ccc;
+        }
+
+        /* =================================================================
+           ATTRIBUTION
+           ================================================================= */
+
+        .attribution {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 10px;
+            opacity: 0.4;
+        }
+
+        /* =================================================================
+           PRINT STYLES
+           ================================================================= */
+
+        @media print {
+            @page {
+                size: A3 landscape;
+                margin: 12mm;
+            }
+
+            html, body {
+                height: auto;
+                font-size: 12px;
+            }
+
+            .canvas-container {
+                min-height: auto;
+                padding: 0;
+            }
+
+            .print-btn {
+                display: none !important;
+            }
+
+            .header {
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .main-grid {
+                flex: none;
+            }
+
+            .box-content textarea {
+                min-height: 100px;
+            }
+
+            .footer-content textarea {
+                min-height: 60px;
+            }
+
+            .attribution {
+                margin-top: 8px;
+            }
+
+            textarea {
+                border: none !important;
+            }
+        }
+
+        @media print and (max-width: 297mm) {
+            @page {
+                size: A4 landscape;
+                margin: 10mm;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .box-content textarea {
+                min-height: 80px;
+            }
+        }
+
+        /* =================================================================
+           RESPONSIVE (for screen viewing)
+           ================================================================= */
+
+        @media screen and (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .column {
+                border-right: none;
+                border-bottom: 2px solid #000;
+            }
+
+            .column:last-child {
+                border-bottom: none;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .header-right {
+                align-self: flex-start;
+            }
+
+            .header-meta {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="title">AI Cognition Canvas</h1>
+                <p class="subtitle">Tools for Thought Framework | Advait Sarkar</p>
+                <div class="header-meta">
+                    <div class="meta-field">
+                        <label for="task-name">Task Name</label>
+                        <input type="text" id="task-name" placeholder="e.g., Q4 Strategy Memo">
+                    </div>
+                    <div class="meta-field">
+                        <label for="task-date">Date</label>
+                        <input type="text" id="task-date" placeholder="e.g., 2025-01-15">
+                    </div>
+                    <div class="meta-field">
+                        <label for="task-goal">Goal / Stakes</label>
+                        <input type="text" id="task-goal" placeholder="e.g., Inform leadership on market entry decision">
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+            </div>
+        </header>
+
+        <!-- MAIN GRID -->
+        <div class="main-grid">
+            
+            <!-- COLUMN 1: THE HUMAN -->
+            <div class="column">
+                <div class="column-header">
+                    <div class="column-title">The Human</div>
+                    <div class="column-subtitle">Material Engagement</div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">A. Direct Contact</div>
+                        <div class="box-prompt">What source materials must I read or touch raw? (No summaries)</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-a" placeholder="List the primary documents, data, or sources you will engage with directly..."></textarea>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">B. The Friction</div>
+                        <div class="box-prompt">What specific struggles or decisions must I keep to ensure I learn?</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-b" placeholder="Identify the difficult parts you must do yourself—the thinking you refuse to outsource..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: THE INTERFACE -->
+            <div class="column">
+                <div class="column-header">
+                    <div class="column-title">The Interface</div>
+                    <div class="column-subtitle">Productive Resistance</div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">C. The Challenge</div>
+                        <div class="box-prompt">How should AI challenge my bias? (e.g., "Act as a critic", "Find the flaw")</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-c" placeholder="Define how you will prompt AI to push back on your thinking..."></textarea>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">D. The Guardrails</div>
+                        <div class="box-prompt">What is the AI explicitly forbidden from doing?</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-d" placeholder="e.g., 'Drafting the conclusion', 'Summarizing before I read', 'Making the final call'..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: THE MACHINE -->
+            <div class="column">
+                <div class="column-header">
+                    <div class="column-title">The Machine</div>
+                    <div class="column-subtitle">AI Support</div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">E. Low Cognitive Load</div>
+                        <div class="box-prompt">Tasks AI can fully handle: Formatting, syntax, summarizing after I've read.</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-e" placeholder="List mechanical tasks you're delegating to AI..."></textarea>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <div class="box-title">F. High Variety</div>
+                        <div class="box-prompt">AI as idea generator: alternatives, stress-tests, blind spot detection.</div>
+                    </div>
+                    <div class="box-content">
+                        <textarea id="box-f" placeholder="How will you use AI to expand possibilities and challenge assumptions?"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-header">
+                <div class="footer-title">Synthesis: Authenticity & Workflow</div>
+                <div class="footer-subtitle">Map the loop from raw input to owned output</div>
+            </div>
+            <div class="footer-content">
+                <textarea id="synthesis" placeholder="Describe your workflow: Raw Materials → AI Interaction → Human Critique → Synthesis → Ownership Verification. How will you know the final output is genuinely yours?"></textarea>
+            </div>
+        </div>
+
+        <div class="attribution">
+            Based on "How to Stop AI from Killing Your Critical Thinking" by Advait Sarkar | Tools for Thought Framework
+        </div>
+
+    </div>
+
+    <script>
+        // Simple auto-save to localStorage
+        (function() {
+            const STORAGE_KEY = 'ai-cognition-canvas';
+            const fields = ['task-name', 'task-date', 'task-goal', 'box-a', 'box-b', 'box-c', 'box-d', 'box-e', 'box-f', 'synthesis'];
+            
+            function save() {
+                const data = {};
+                fields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) data[id] = el.value;
+                });
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {}
+            }
+
+            function load() {
+                try {
+                    const stored = localStorage.getItem(STORAGE_KEY);
+                    if (!stored) return;
+                    const data = JSON.parse(stored);
+                    fields.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el && data[id]) el.value = data[id];
+                    });
+                } catch (e) {}
+            }
+
+            // Debounced save
+            let timeout;
+            function debouncedSave() {
+                clearTimeout(timeout);
+                timeout = setTimeout(save, 500);
+            }
+
+            // Attach listeners
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('input', debouncedSave);
+            });
+
+            // Load on init
+            load();
+        })();
+    </script>
+</body>
+</html>

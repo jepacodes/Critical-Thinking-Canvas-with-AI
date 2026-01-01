@@ -1,0 +1,658 @@
+/**
+ * AI Proper Use Workbook - Minimalist Styles
+ * 
+ * A clean, white, single-page design with sophisticated typography.
+ */
+
+/* =============================================================================
+   Fonts
+   Using Source Serif Pro for headings (elegant, readable)
+   and Source Sans 3 for body text (clean, modern)
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+/* =============================================================================
+   CSS Variables
+   ============================================================================= */
+
+:root {
+  --font-heading: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --color-black: #1a1a1a;
+  --color-gray-900: #2d2d2d;
+  --color-gray-700: #4a4a4a;
+  --color-gray-500: #737373;
+  --color-gray-300: #b3b3b3;
+  --color-gray-200: #d4d4d4;
+  --color-gray-100: #f0f0f0;
+  --color-white: #ffffff;
+  
+  --color-accent: #2d2d2d;
+  --color-success: #2d5a3d;
+  --color-danger: #8b3a3a;
+  
+  --max-width: 800px;
+  --spacing-section: 80px;
+  --spacing-block: 40px;
+  --spacing-element: 24px;
+}
+
+/* =============================================================================
+   Reset and Base
+   ============================================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-white);
+  color: var(--color-gray-900);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================================
+   Layout
+   ============================================================================= */
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 24px 120px;
+}
+
+/* =============================================================================
+   Header
+   ============================================================================= */
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-section);
+  padding-bottom: var(--spacing-block);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-black);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.header p {
+  font-size: 1rem;
+  color: var(--color-gray-500);
+  font-weight: 400;
+}
+
+/* =============================================================================
+   Section Navigation (Table of Contents)
+   ============================================================================= */
+
+.toc {
+  margin-bottom: var(--spacing-section);
+  padding: var(--spacing-element);
+  background: var(--color-gray-100);
+  border-radius: 4px;
+}
+
+.toc-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.toc-list a {
+  font-size: 0.95rem;
+  color: var(--color-gray-700);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toc-list a:hover {
+  color: var(--color-black);
+}
+
+/* =============================================================================
+   Action Buttons
+   ============================================================================= */
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: var(--spacing-block);
+  padding-bottom: var(--spacing-element);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+}
+
+.btn:hover {
+  background: var(--color-gray-100);
+  border-color: var(--color-gray-500);
+  color: var(--color-black);
+}
+
+.btn-primary {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.btn-primary:hover {
+  background: var(--color-gray-700);
+  border-color: var(--color-gray-700);
+}
+
+.save-status {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  margin-left: auto;
+}
+
+.save-status.saved {
+  color: var(--color-success);
+}
+
+/* =============================================================================
+   Canvas Sections
+   ============================================================================= */
+
+.canvas {
+  margin-bottom: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.canvas:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.canvas-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.canvas-number {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.canvas-subtitle {
+  color: var(--color-gray-500);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-block);
+  max-width: 600px;
+}
+
+/* =============================================================================
+   Question Blocks
+   ============================================================================= */
+
+.question-block {
+  margin-bottom: var(--spacing-block);
+  padding-left: 20px;
+  border-left: 2px solid var(--color-gray-200);
+}
+
+.question-text {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 8px;
+}
+
+.question-description {
+  color: var(--color-gray-500);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+/* =============================================================================
+   Checkboxes
+   ============================================================================= */
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: var(--color-black);
+  flex-shrink: 0;
+}
+
+.checkbox-item label {
+  cursor: pointer;
+  color: var(--color-gray-700);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.checkbox-item label strong {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+/* =============================================================================
+   Status Badges
+   ============================================================================= */
+
+.status-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+
+.badge-yes {
+  background: #e8f5e9;
+  color: var(--color-success);
+}
+
+.badge-no {
+  background: #ffebee;
+  color: var(--color-danger);
+}
+
+/* =============================================================================
+   Grid Layouts
+   ============================================================================= */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-element);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-element);
+}
+
+@media (max-width: 700px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================================
+   Cards
+   ============================================================================= */
+
+.card {
+  padding: var(--spacing-element);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 4px;
+  background: var(--color-white);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.card-content {
+  color: var(--color-gray-700);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.card-accent-green {
+  border-left: 3px solid var(--color-success);
+}
+
+.card-accent-orange {
+  border-left: 3px solid #c67030;
+}
+
+.card-accent-red {
+  border-left: 3px solid var(--color-danger);
+}
+
+/* =============================================================================
+   Text Areas
+   ============================================================================= */
+
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: vertical;
+  color: var(--color-gray-900);
+  background: var(--color-white);
+  transition: border-color 0.2s;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-gray-500);
+}
+
+.textarea::placeholder {
+  color: var(--color-gray-300);
+}
+
+.textarea-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+  margin-bottom: 8px;
+}
+
+/* =============================================================================
+   Workflow Steps
+   ============================================================================= */
+
+.workflow-step {
+  margin-bottom: var(--spacing-element);
+  padding-left: 48px;
+  position: relative;
+}
+
+.step-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.step-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-black);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.step-description {
+  color: var(--color-gray-500);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+/* =============================================================================
+   Timeline
+   ============================================================================= */
+
+.timeline-week {
+  margin-bottom: var(--spacing-block);
+  padding-bottom: var(--spacing-element);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.timeline-week:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline-week-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-black);
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.timeline-item {
+  padding-left: 20px;
+  position: relative;
+  color: var(--color-gray-700);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.timeline-item::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-gray-300);
+}
+
+/* =============================================================================
+   Section Divider
+   ============================================================================= */
+
+.section-divider {
+  height: 1px;
+  background: var(--color-gray-200);
+  margin: var(--spacing-block) 0;
+}
+
+/* =============================================================================
+   Subsection
+   ============================================================================= */
+
+.subsection {
+  margin-top: var(--spacing-block);
+}
+
+.subsection-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 8px;
+}
+
+.subsection-description {
+  color: var(--color-gray-500);
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-element);
+}
+
+/* =============================================================================
+   Footer
+   ============================================================================= */
+
+.footer {
+  margin-top: var(--spacing-section);
+  padding-top: var(--spacing-block);
+  border-top: 1px solid var(--color-gray-200);
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+  line-height: 1.8;
+}
+
+.footer a {
+  color: var(--color-gray-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer a:hover {
+  color: var(--color-black);
+}
+
+.footer-principle {
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* =============================================================================
+   Print Styles
+   ============================================================================= */
+
+@media print {
+  body {
+    font-size: 11pt;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .action-buttons,
+  .toc {
+    display: none;
+  }
+
+  .canvas {
+    page-break-inside: avoid;
+  }
+
+  .textarea {
+    border: 1px solid #ccc;
+    min-height: 60px;
+  }
+}
+
+/* =============================================================================
+   Accessibility
+   ============================================================================= */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 8px 16px;
+  z-index: 100;
+  font-size: 0.9rem;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =============================================================================
+   Responsive
+   ============================================================================= */
+
+@media (max-width: 600px) {
+  html {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 40px 20px 80px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .canvas-title {
+    font-size: 1.4rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .save-status {
+    margin-left: 0;
+    text-align: center;
+  }
+}
